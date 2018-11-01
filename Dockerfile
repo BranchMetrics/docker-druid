@@ -1,8 +1,8 @@
 FROM ubuntu:14.04
 
 # Set version and github repo which you want to build from
-ENV GITHUB_OWNER druid-io
-ENV DRUID_VERSION 0.12.1
+# ENV GITHUB_OWNER druid-io
+ENV DRUID_VERSION 0.11.0
 ENV ZOOKEEPER_VERSION 3.4.10
 
 # Java 8
@@ -39,8 +39,9 @@ RUN adduser --system --group --no-create-home druid \
 RUN mkdir -p /usr/local/druid/lib
 
 # trigger rebuild only if branch changed
-ADD https://api.github.com/repos/$GITHUB_OWNER/druid/git/refs/heads/$DRUID_VERSION druid-version.json
-RUN git clone -q --branch $DRUID_VERSION --depth 1 https://github.com/$GITHUB_OWNER/druid.git /tmp/druid
+# ADD https://api.github.com/repos/$GITHUB_OWNER/druid/git/refs/heads/$DRUID_VERSION druid-version.json
+# RUN git clone -q --branch $DRUID_VERSION --depth 1 https://github.com/$GITHUB_OWNER/druid.git /tmp/druid
+ADD druid/ /tmp/druid/
 WORKDIR /tmp/druid
 
 # package and install Druid locally
