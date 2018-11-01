@@ -40,8 +40,8 @@ RUN mkdir -p /usr/local/druid/lib
 
 # trigger rebuild only if branch changed
 # ADD https://api.github.com/repos/$GITHUB_OWNER/druid/git/refs/heads/$DRUID_VERSION druid-version.json
-# RUN git clone -q --branch $DRUID_VERSION --depth 1 https://github.com/$GITHUB_OWNER/druid.git /tmp/druid
-ADD druid/ /tmp/druid/
+RUN git clone -b logging-parquet-indexer https://github.com/BranchMetrics/druid.git /tmp/druid
+# ADD druid/ /tmp/druid/
 WORKDIR /tmp/druid
 
 # package and install Druid locally
